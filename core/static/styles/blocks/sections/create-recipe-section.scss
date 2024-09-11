@@ -1,0 +1,14 @@
+.create-recipe-section {
+  &__container {
+    @include df_fdc;
+    gap: .5rem;
+  }
+
+  &__title {
+    @include heading_2
+  }
+
+  .ingridient-cards {
+    margin-top: 2rem;
+  }
+}

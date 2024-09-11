@@ -1,0 +1,22 @@
+.finally-recipe-section {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__step {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__name {
+      color: var(--text-primary)-transparent-50;
+      @include text_2
+    }
+
+    &__content {
+      @include text_1
+    }
+  }
+}

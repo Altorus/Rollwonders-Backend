@@ -1,0 +1,10 @@
+.title-section {
+  &__container{
+    @include df_ac;
+    gap: .5rem;
+    justify-content: space-between;
+  }
+  &__title {
+    @include heading_1
+  }
+}

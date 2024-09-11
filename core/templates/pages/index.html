@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <main>
+        <section class="pt-2">
+            <div class="title-section">
+                <div class="container title-section__container">
+                    <div class="title-section__title">Ваши рецепты</div>
+                </div>
+            </div>
+        </section>
+        <section class="pt-2">
+            <div class="recipe-section">
+                <div class="container recipe-section__container">
+                    {% for recipe in user.recipes.all %}
+                        <div class="recipe-section__recipe-item accordion-item">
+                            <div class="recipe-section__recipe-item__header accordion-item__header">
+                                <div class="recipe-section__recipe-item__header__info">
+                                    <div class="recipe-section__recipe-item__header__info__title">
+                                        {{ recipe.name }}
+                                    </div>
+                                    <div class="recipe-section__recipe-item__header__info__description">
+                                        {{ recipe.created_at|naturalday }}, {{ recipe.created_at|date:"h:m" }}
+                                    </div>
+                                </div>
+                                <i class="icon-button icon-button_subdued">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M8.22 5.22C8.36062 5.07955 8.55125 5.00066 8.75 5.00066C8.94875 5.00066 9.13937 5.07955 9.28 5.22L13.53 9.47C13.6704 9.61062 13.7493 9.80125 13.7493 10C13.7493 10.1987 13.6704 10.3894 13.53 10.53L9.28 14.78C9.13782 14.9125 8.94978 14.9846 8.75547 14.9812C8.56117 14.9777 8.37579 14.899 8.23837 14.7616C8.10096 14.6242 8.02225 14.4388 8.01882 14.2445C8.01539 14.0502 8.08752 13.8622 8.22 13.72L11.94 10L8.22 6.28C8.07955 6.13937 8.00066 5.94875 8.00066 5.75C8.00066 5.55125 8.07955 5.36062 8.22 5.22Z"
+                                              fill="#59524C"/>
+                                    </svg>
+                                </i>
+                            </div>
+                            <div class="accordion-item__body">
+                                <div class="recipe-section__recipe-item__body accordion-item__content">
+                                    {% for step in recipe.steps.all %}
+                                        <p>Шаг {{ forloop.counter }}</p>
+                                    	<p>{{ step.text }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="recipe-section__recipe-item_empty">
+                            <div class="recipe-section__recipe-item_empty__info">
+                                <div class="recipe-section__recipe-item_empty__info__title">У Вас пока еще нет рецептов
+                                </div>
+                                <div class="recipe-section__recipe-item_empty__info__description">Давайте создадим
+                                    первый!
+                                </div>
+                            </div>
+                            <a href="{% url 'core:make_recipe' %}"
+                               class="recipe-section__recipe-item_empty__create-button">Создать</a>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

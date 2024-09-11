@@ -1,0 +1,45 @@
+header {
+  position: sticky;
+  z-index: 1;
+  top: -1px;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+  width: 100%;
+  background-color: var(--bg-primary);
+
+  &_sticky-hidden {
+    transform: translateY(-100%);
+  }
+
+
+  .header {
+
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    &__logo {
+      height: 4rem;
+      aspect-ratio: 38.52px / 48px;
+
+      svg {
+        @include image_contain
+      }
+    }
+
+    &__toolbar {
+      display: flex;
+    }
+
+    &__navigation {
+      @include df_ac_jcc;
+
+      &__title {
+        @include heading_2
+      }
+    }
+  }
+}

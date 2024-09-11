@@ -1,0 +1,26 @@
+footer {
+  position: fixed;
+  background-color: var(--bg-primary);
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  width: 100%;
+
+  .footer {
+    &__container {
+      margin: 0;
+      @include df_fdc_ac;
+      gap: 1rem;
+
+      &_row {
+        flex-direction: row;
+        gap: .5rem;
+      }
+    }
+
+    &__description {
+      color: var(--text-primary)-transparent-50;
+      text-align: center;
+    }
+  }
+}

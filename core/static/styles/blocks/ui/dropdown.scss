@@ -1,0 +1,28 @@
+.dropdown-item {
+    position: relative;
+    transition: all 0.3s ease-out;
+    a {
+        @include df_ac;
+        svg {
+            transition: all .3s ease-out;
+        }
+    }
+    &__content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transition: all 0.3s ease-out;
+    }
+    &:hover {
+        a {
+            svg {
+                transform: rotate(180deg);
+                transition: all .3s ease-out;
+            }
+        }
+        .dropdown-item__content {
+            @include df_fdc;
+        }
+    }
+}

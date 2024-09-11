@@ -1,0 +1,46 @@
+.checkbox {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.333rem 1rem;
+
+  &__label {
+    flex: 1;
+    @include text_1;
+    color: var(--text-primary);
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkmark {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--bg-terteriary);
+    position: relative;
+    border-radius: .25rem;
+    @include transition(background-color);
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: .75rem;
+      height: .75rem;
+      background-color: #fff;
+      opacity: 0;
+      border-radius: .125rem;
+    }
+  }
+
+  input[type="checkbox"]:checked + .checkmark {
+    background-color: var(--bg-inverse);
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.accordion-item {
+  cursor: pointer;
+
+  &__header {
+
+  }
+
+  &__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+
+  }
+
+  &__content {
+    // Тут стили контента
+  }
+
+  &.show {
+    .accordion-item__header {
+      .icon-button{
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

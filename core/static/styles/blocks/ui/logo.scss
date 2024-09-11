@@ -1,0 +1,8 @@
+.logo{
+ &__light-item{
+  fill: var(--bg-inverse);
+ }
+ &__dark-item{
+  fill: var(--bg-accent);
+ }
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    {% include 'components/headers/recipe_header.html' with title="Создать рецепт" %}
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="pt-2">
+            <div class="description-section">
+                <div class="container description-section__container">
+                    <div class="description-section__content">
+                        Выберите по одному ингредиенту из каждой группы основного согласно тому, что выпало на кубиках.
+                        Ну а
+                        если сильно хочется добавьте один или несколько из сезонного.
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% include 'components/sections/create-recipe-section.html' with title="Основное" categories=categories %}
+        {% if season_categories %}
+            {% include 'components/sections/create-recipe-section.html' with title="Сезонное" categories=season_categories %}
+        {% endif %}
+    </main>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container footer__container">
+            <div class="footer__description">
+                Необходимо выбрать по одному ингредиенту и каждой основной группы
+            </div>
+            <button class="button button_color_accent __createRecipe" disabled>
+                <span>Создать рецепт</span>
+            </button>
+        </div>
+    </footer>
+{% endblock %}

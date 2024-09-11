@@ -1,0 +1,59 @@
+.recipe-section {
+  &__container {
+    @include df_fdc;
+    gap: .5rem;
+  }
+
+  &__recipe-item {
+    padding: 1.25rem 1.5rem;
+    border-radius: .75rem;
+    background-color: var(--bg-secondary);
+
+    &_empty {
+      padding: 2rem 1.5rem;
+      background-color: var(--bg-primary);
+      border: 1px dashed var(--border-subaccent);
+      border-radius: 1rem;
+      @include df-fdc_ac;
+      gap: 2rem;
+
+      &__info {
+        @include df_fdc_ac;
+        gap: .5rem;
+
+        &__title {
+          @include text_1
+        }
+
+        &__description {
+          @include text_2;
+          color: var(--text-primary)-transparent-50;
+        }
+      }
+      &__create-button{
+        @include button_1;
+        color: var(--text-accent);
+      }
+    }
+
+
+    &__header {
+      @include df_ac;
+      justify-content: space-between;
+
+      &__info {
+        @include df_fdc;
+        gap: .5rem;
+
+        &__title {
+          @include button_1
+        }
+
+        &__description {
+          @include text_2;
+          color: var(--text-primary)-transparent-50;
+        }
+      }
+    }
+  }
+}

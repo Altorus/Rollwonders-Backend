@@ -1,0 +1,108 @@
+.button {
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: .75rem;
+  color: var(--text-inverse);
+  padding: 1.25rem;
+  width: 100%;
+  @include transition(background-color, color);
+  cursor: pointer;
+
+  span {
+    text-align: center;
+    @include button_1;
+    color: inherit;
+  }
+
+  &_color {
+    &_terteriary {
+      background-color: var(--bg-terteriary);
+      color: var(--text-primary);
+    }
+
+    &_subaccent {
+      background-color: var(--bg-subaccent);
+    }
+
+    &_accent {
+      background-color: var(--bg-accent);
+    }
+
+    &_inverse {
+      background-color: var(--bg-inverse);
+    }
+  }
+
+  &.disabled, &:disabled {
+    pointer-events: none;
+    background-color: var(--bg-inverse-transparent-50);
+    cursor: not-allowed;
+  }
+}
+
+.icon-button {
+  padding: 1.333rem;
+  width: fit-content;
+  @include df_ac_jcc;
+  cursor: pointer;
+  @include transition(transform);
+
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    path {
+      @include transition(background-color, color);
+    }
+  }
+
+  &_accent {
+    svg path {
+      fill: var(--icon-subaccent)
+    }
+
+    &:active {
+      background-color: var(--bg-secondary);
+    }
+  }
+
+  &_subdued {
+    svg path {
+      fill: var(--icon-primary)
+    }
+
+    &:active {
+      svg path {
+        fill: var(--icon-primary)
+      }
+
+      background-color: var(--bg-secondary);
+    }
+  }
+
+  &_white {
+    svg path {
+      fill: var(--icon-inverse)
+    }
+  }
+}
+
+.dark-theme {
+  .button {
+    color: var(--text-primary);
+
+    &:disabled {
+      color: var(--text-inverse);
+    }
+
+    &_color {
+      &_subaccent {
+        color: var(--text-inverse);
+      }
+    }
+  }
+}

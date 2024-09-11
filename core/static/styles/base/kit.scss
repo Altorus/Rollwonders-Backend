@@ -1,0 +1,133 @@
+$bg-primary: #FFFFFF;
+$bg-secondary: #F0EFEB;
+$bg-terteriary: #E1D4C3;
+$bg-subaccent: #CD9D86;
+$bg-inverse: #59524C;
+$bg-accent: #475B50;
+
+$bg-inverse-transparent-50: color-mix(in srgb, $bg-primary 100%, $bg-inverse 50%);
+
+$text-primary: #59524C;
+$text-inverse: #FFFFFF;
+$text-accent: #475B50;
+
+$text-primary-transparent-50: color-mix(in srgb, $bg-inverse 100%, $bg-primary 50%);
+
+$icon-primary: #59524C;
+$icon-inverse: #FFFFFF;
+$icon-subaccent: #CD9D86;
+
+$icon-primary-transparent-50: color-mix(in srgb, $bg-inverse 100%, $bg-primary 50%);
+
+$border-primary: #59524C;
+$border-subaccent: #CD9D86;
+$border-inverse: #FFFFFF;
+
+$border-primary-transparent-20: color-mix(in srgb, $bg-primary 100%, $bg-inverse 20%);
+
+
+:root {
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  --bg-terteriary: #{$bg-terteriary};
+  --bg-subaccent: #{$bg-subaccent};
+  --bg-inverse: #{$bg-inverse};
+  --bg-accent: #{$bg-accent};
+
+  --bg-inverse-transparent-50: #{$bg-inverse-transparent-50};
+
+  --text-primary: #{$text-primary};
+  --text-inverse: #{$text-inverse};
+  --text-accent: #{$text-accent};
+
+  --text-primary-transparent-50: #{$text-primary-transparent-50};
+
+  --icon-primary: #{$icon-primary};
+  --icon-inverse: #{$icon-inverse};
+  --icon-subaccent: #{$icon-subaccent};
+
+  --icon-primary-transparent-50: #{$icon-primary-transparent-50};
+
+  --border-primary: #{$border-primary};
+  --border-subaccent: #{$border-subaccent};
+  --border-inverse: #{$border-inverse};
+
+  --border-primary-transparent-20: #{$border-primary-transparent-20};
+}
+
+.dark-theme {
+  --bg-primary: #59524C;
+  --bg-secondary: color-mix(in srgb, #59524CCC 80%, #E1D4C3 20%);
+  --bg-terteriary: #E1D4C3;
+  --bg-subaccent: #E1D4C3;
+  --bg-inverse: #FFFFFF;
+  --bg-accent: #CD9D86;
+
+  --bg-inverse-transparent-50: color-mix(in srgb, #59524C 100%, #FFFFFF 50%);
+
+  --text-primary: #FFFFFF;
+  --text-inverse: #59524C;
+  --text-accent: #CD9D86;
+
+  --text-primary-transparent-50: color-mix(in srgb, #FFFFFF 100%, #59524C 50%);
+
+  --icon-primary: #FFFFFF;
+  --icon-inverse: #59524C;
+  --icon-subaccent: #CD9D86;
+
+  --icon-primary-transparent-50: color-mix(in srgb, #FFFFFF 100%, #59524C 50%);
+
+  --border-primary: #FFFFFF;
+  --border-subaccent: #CD9D86;
+  --border-inverse: #59524C;
+
+  --border-primary-transparent-20: color-mix(in srgb, #59524C 100%, #FFFFFF 20%);
+
+}
+
+@mixin heading_1 {
+  font-size: 2.6rem;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+
+@mixin heading_2 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+
+@mixin text_1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.03em;
+}
+
+@mixin text_2 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.03em;
+}
+
+@mixin button_1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.03em;
+}
+
+@for $i from 1 through 2 {
+  .pt-#{$i} {
+    padding-top: #{$i}rem;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem;
+  }
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
+}
