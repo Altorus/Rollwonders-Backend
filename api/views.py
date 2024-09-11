@@ -1,6 +1,7 @@
 import pdb
 
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.models import AnonymousUser
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
@@ -75,3 +76,7 @@ class LoginViewSet(viewsets.ViewSet):
         user = serializer.save()
         auth_login(request, user)
         return Response(status=status.HTTP_200_OK)
+
+    @action(methods=['GET'], detail=False, url_path='get-status')
+    def get_status(self, request, *args, **kwargs):
+        return request.user != AnonymousUser()

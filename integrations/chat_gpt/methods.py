@@ -2,6 +2,7 @@ import os
 import pdb
 import re
 import requests
+from django.db import transaction
 from openai import OpenAI
 from core import models
 from . import constants
