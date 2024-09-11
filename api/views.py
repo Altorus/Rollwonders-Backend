@@ -14,7 +14,7 @@ from rest_framework.decorators import action
 from accounts.models import User
 from core.models import Recipe
 from .serializers import MakeRecipeSerializer, UserSerializer
-from integrations.chat_gpt.methods import GPTGenerator
+from integrations.chat_gpt.tasks import generate_recipe_task
 
 
 class GenerateRecipeApiView(CreateAPIView, RetrieveAPIView):
@@ -25,7 +25,8 @@ class GenerateRecipeApiView(CreateAPIView, RetrieveAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         instance = super().retrieve(request, *args, **kwargs)
-        if instance.status_code == 200:
+        recipe = self.get_object()
+        if instance.status_code == 200 and recipe.steps.exists():
             return Response(data={"recipeCreated": True}, status=status.HTTP_200_OK)
         else:
             return Response(data={"recipeCreated": False}, status=status.HTTP_200_OK)
@@ -39,7 +40,7 @@ class GenerateRecipeApiView(CreateAPIView, RetrieveAPIView):
         serializer.is_valid(raise_exception=True)
         recipe = serializer.save()
         ingredients = [ingredient.name for ingredient in serializer.validated_data['ingredients']]
-        GPTGenerator().generate_recipe(ingredients, recipe)
+        generate_recipe_task.delay(ingredients, recipe.id)
 
         return Response(data={"recipe_id": recipe.id}, status=status.HTTP_200_OK)
 
@@ -79,4 +80,4 @@ class LoginViewSet(viewsets.ViewSet):
 
     @action(methods=['GET'], detail=False, url_path='get-status')
     def get_status(self, request, *args, **kwargs):
-        return request.user != AnonymousUser()
+        return Response(status=status.HTTP_200_OK, data={"status": request.user != AnonymousUser()})
