@@ -669,6 +669,15 @@ footer .footer__description {
   border-radius: 0.75rem;
   background-color: var(--bg-secondary);
 }
+.recipe-section__recipe-item__body {
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.recipe-section__recipe-item__body p:nth-of-type(odd) {
+  color: var(--text-primary-transparent-50);
+}
 .recipe-section__recipe-item_empty {
   padding: 2rem 1.5rem;
   background-color: var(--bg-primary);
