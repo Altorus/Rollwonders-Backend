@@ -2,9 +2,6 @@ import {getData, sendData} from "./utils.js";
 
 export async function authentication() {
     const tg = window.Telegram.WebApp;
-
-
-    const colorScheme = tg.colorScheme
     const status = await getAuthoriseStatus();
     if (!status) {
         authoriseUser({"username": "79879536376", "telegram_id": 12345});
