@@ -59,6 +59,12 @@
     {# Scripts #}
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+    <script>
+        // Timezone settings
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; // e.g. "America/New_York"
+        document.cookie = "django_timezone=" + timezone;
+    </script>
+
 
     {#  Apply extra head html from site settings #}
     {% autoescape off %}{{ site_settings.extra_head_html }}{% endautoescape %}
