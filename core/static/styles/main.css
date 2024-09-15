@@ -488,6 +488,7 @@ input {
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 .ingridient-card__header__text-block__state {
   font-size: 1.25rem;

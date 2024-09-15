@@ -33,7 +33,8 @@
       gap: 1.333rem;
 
       &__name {
-        @include button_1
+        @include button_1;
+        white-space: nowrap;
       }
 
       &__state {
