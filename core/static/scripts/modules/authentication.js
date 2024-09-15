@@ -6,6 +6,7 @@ export async function authentication() {
     if (!status) {
         const user = tg.initDataUnsafe.user;
         if (user) {
+            console.log(user)
             authoriseUser({"username": user.id, "telegram_id": user.id});
         }
     }
