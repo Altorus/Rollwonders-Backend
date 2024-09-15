@@ -88,31 +88,21 @@ class GPTGenerator:
         return recipe
 
     def generate_recipe(self, products: list, recipe: models.Recipe):
-        try:
-            client = OpenAI(
-                api_key=env("GPT_TOKEN"),
-                organization='org-3cbCgaEqON5TcNPvqZSHkl4n',
-                project='proj_aDspcNxkZ4fPTcl2JaSlVlJA',
-            )
-        except:
-            logger.error('ошибка авторизации')
+        client = OpenAI(
+            api_key=env("GPT_TOKEN"),
+            organization='org-3cbCgaEqON5TcNPvqZSHkl4n',
+            project='proj_aDspcNxkZ4fPTcl2JaSlVlJA',
+        )
         prompt = self.__get_prompt(products)
 
-        try:
-            stream = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": prompt}],
-            )
-        except:
-            logger.error('ошибка генерации')
+        stream = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+        )
 
-        try:
-            result = stream.choices[0].message.content
-            clean_result = re.sub(r'\s+', ' ', result).strip()
-        except:
-            logger.error('ошибка подготовки данных')
-
+        result = stream.choices[0].message.content
+        clean_result = re.sub(r'\s+', ' ', result).strip()
         try:
             self.__parse_result(clean_result, recipe)
-        except:
-            logger.error('ошибка парсинга')
+        except ValueError as e:
+            logger.error(e)
