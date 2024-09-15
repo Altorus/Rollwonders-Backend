@@ -31,11 +31,8 @@ class GPTGenerator:
     @transaction.atomic
     def __parse_result(recipe_text: str, recipe: models.Recipe):
         # 1. Парсинг названия
-        recipe_name_pattern = r"\*\*Название\*\* (.+?) \*\*Ингредиенты\*\*"
+        recipe_name_pattern = r"\*\*Название:?\*\*\s*(.+?)\s*\*\*Ингредиенты:?\*\*"
         recipe_name_match = re.search(recipe_name_pattern, recipe_text)
-
-        logger.error(recipe_text)
-        logger.error(recipe_name_match)
 
         if not recipe_name_match:
             raise ValueError("Не найдено название рецепта")
@@ -47,7 +44,7 @@ class GPTGenerator:
         recipe.save()
 
         # 3. Парсинг ингредиентов
-        ingredients_pattern = r"\*\*Ингредиенты\*\*([\s\S]+?)\*\*Этапы\*\*"
+        ingredients_pattern = r"\*\*Ингредиенты:?\*\*([\s\S]+?)\*\*Этапы:?\*\*"
         ingredients_match = re.search(ingredients_pattern, recipe_text)
         if not ingredients_match:
             raise ValueError("Не найдены ингредиенты")
@@ -71,7 +68,7 @@ class GPTGenerator:
             )
 
         # 4. Парсинг шагов рецепта
-        steps_pattern = r"\*\*Этапы\*\*([\s\S]+)"
+        steps_pattern = r"\*\*Этапы:?\*\*([\s\S]+)"
         steps_match = re.search(steps_pattern, recipe_text)
         if not steps_match:
             raise ValueError("Не найдены этапы приготовления")
@@ -107,6 +104,8 @@ class GPTGenerator:
         result = stream.choices[0].message.content
         clean_result = re.sub(r'\s+', ' ', result).strip()
         logger.error(clean_result)
+
+        # clean_result = "**Название:** Свинина с рисом и овощами **Ингредиенты:** 1. Свинина (500 г) 2. Рис (200 г) 3. Помидоры (2 шт.) 4. Груши (1 шт.) 5. Грейпфрут (1 шт.) 6. Укроп (по желанию) 7. Листовой салат (по желанию) 8. Соль (по вкусу) 9. Перец (по вкусу) 10. Оливковое масло (2 ст. ложки) **Этапы:** 1. Промойте рис под холодной водой и замочите его на 30 минут. После этого откиньте на дуршлаг. 2. Свинину нарежьте кубиками, посолите и поперчите по вкусу. Обжарьте мясо на сковороде с разогретым оливковым маслом до золотистой корочки. 3. Пока свинина жарится, нарежьте помидоры и грушу кубиками. Добавьте их к мясу, когда оно почти готово, и потушите ещё 5–7 минут, чтобы овощи стали мягкими. 4. В отдельной кастрюле отварите рис в подсоленной воде до готовности (примерно 15-20 минут). После приготовления слейте остатки воды. 5. Смешайте готовый рис с тушеной свининой и овощами. Перемешайте, добавьте мелко нарезанный укроп по желанию. 6. Грейпрут почистите и нарежьте на дольки. Подавайте нарезанный грейпрут вместе с рисом и свининой — это добавит интересного контраста вкусов. 7. Для подачи на тарелке добавьте листовой салат как гарнир. Приятного аппетита!"
         try:
             self.__parse_result(clean_result, recipe)
         except ValueError as e:
