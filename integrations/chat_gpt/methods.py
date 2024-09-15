@@ -105,7 +105,14 @@ class GPTGenerator:
             )
         except:
             logger.error('ошибка генерации')
-        result = stream.choices[0].message.content
-        clean_result = re.sub(r'\s+', ' ', result).strip()
 
-        self.__parse_result(clean_result, recipe)
+        try:
+            result = stream.choices[0].message.content
+            clean_result = re.sub(r'\s+', ' ', result).strip()
+        except:
+            logger.error('ошибка подготовки данных')
+
+        try:
+            self.__parse_result(clean_result, recipe)
+        except:
+            logger.error('ошибка парсинга')
