@@ -6,8 +6,13 @@ export async function authentication() {
     if (!status) {
         const user = tg.initDataUnsafe.user;
         if (user) {
-            console.log(user)
-            authoriseUser({"username": user.first_name, "telegram_id": user.id});
+            let username;
+            if (user.username) {
+                username = user.username;
+            } else {
+                username = user.id;
+            }
+            authoriseUser({"username": username, "telegram_id": user.id});
         }
     }
 }
@@ -17,19 +22,19 @@ async function getAuthoriseStatus() {
     return res.status;
 }
 
-function registerUser(data){
+function registerUser(data) {
     sendData(data, "/api/authentication/register/")
-        .then(res=>{
+        .then(res => {
             console.log(res)
         })
 }
 
-function authoriseUser(data){
+function authoriseUser(data) {
     sendData(data, "/api/authentication/login/")
-        .then(res=>{
+        .then(res => {
             console.log(res)
         })
-        .catch(error=>{
+        .catch(error => {
             registerUser(data)
         })
 }
