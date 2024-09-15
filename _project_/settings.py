@@ -207,10 +207,20 @@ LOGGING = {
             "class": "logging.FileHandler",
             "filename": os.path.join(BASE_LOGS_DIR, "debug.log"),
         },
+        "gpt": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_LOGS_DIR, "gpt.log"),
+        },
     },
     "loggers": {
         "django": {
             "handlers": ["debug_file"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "gpt": {
+            "handlers": ["gpt"],
             "level": "DEBUG",
             "propagate": True,
         },

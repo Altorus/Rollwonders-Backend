@@ -1,5 +1,4 @@
-import os
-import pdb
+import logging
 import re
 import requests
 from django.db import transaction
@@ -12,6 +11,7 @@ from django.conf import settings as django_settings
 
 environ.Env.read_env(os.path.join(django_settings.BASE_DIR, '.env'))
 env = environ.Env()
+logger = logging.getLogger('gpt')
 
 
 class GPTGenerator:
@@ -88,18 +88,23 @@ class GPTGenerator:
         return recipe
 
     def generate_recipe(self, products: list, recipe: models.Recipe):
-        client = OpenAI(
-            api_key=env("GPT_TOKEN"),
-            organization='org-3cbCgaEqON5TcNPvqZSHkl4n',
-            project='proj_aDspcNxkZ4fPTcl2JaSlVlJA',
-        )
+        try:
+            client = OpenAI(
+                api_key=env("GPT_TOKEN"),
+                organization='org-3cbCgaEqON5TcNPvqZSHkl4n',
+                project='proj_aDspcNxkZ4fPTcl2JaSlVlJA',
+            )
+        except:
+            logger.error('ошибка авторизации')
         prompt = self.__get_prompt(products)
 
-        stream = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}],
-        )
-
+        try:
+            stream = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[{"role": "user", "content": prompt}],
+            )
+        except:
+            logger.error('ошибка генерации')
         result = stream.choices[0].message.content
         clean_result = re.sub(r'\s+', ' ', result).strip()
 
