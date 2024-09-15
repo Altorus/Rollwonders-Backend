@@ -33,6 +33,10 @@ class GPTGenerator:
         # 1. Парсинг названия
         recipe_name_pattern = r"\*\*Название\*\* (.+?) \*\*Ингредиенты\*\*"
         recipe_name_match = re.search(recipe_name_pattern, recipe_text)
+
+        logger.error(recipe_text)
+        logger.error(recipe_name_match)
+
         if not recipe_name_match:
             raise ValueError("Не найдено название рецепта")
 
