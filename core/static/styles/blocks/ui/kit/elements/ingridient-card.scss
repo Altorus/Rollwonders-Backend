@@ -38,8 +38,12 @@
 
       &__state {
         @include text_2;
-        color: var(--text-primary)-transparent-50;
+        color: var(--text-primary) -transparent-50;
         text-align: end;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
     }
   }
@@ -66,7 +70,7 @@
 
       &__description {
         @include text_1;
-        color: var(--text-primary)-transparent-50;
+        color: var(--text-primary) -transparent-50;
       }
     }
   }

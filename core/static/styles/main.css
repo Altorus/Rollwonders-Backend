@@ -496,6 +496,10 @@ input {
   letter-spacing: -0.03em;
   color: var(--text-primary) -transparent-50;
   text-align: end;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .ingridient-card__body {
   margin-top: 1rem;

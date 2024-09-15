@@ -34,9 +34,12 @@ function getSelectedIngredients() {
 
 function changeIngredientState(card) {
     const stateElement = card.querySelector(`.__ingridientState`);
-    const checkboxes = card.querySelectorAll('input[type=checkbox]:checked').length;
-    if (checkboxes > 0) {
-        stateElement.innerText = "Выбрано";
+    const checkboxes = card.querySelectorAll('input[type=checkbox]:checked');
+    if (checkboxes.length > 0) {
+        const values = Array.from(checkboxes).map(checkbox=>{
+            return checkbox.previousElementSibling.innerText;
+        })
+        stateElement.innerText = values.join(', ');
     } else {
         stateElement.innerText = "Не выбрано";
     }
