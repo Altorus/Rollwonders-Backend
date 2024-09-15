@@ -4,11 +4,10 @@ export async function authentication() {
     const tg = window.Telegram.WebApp;
     const status = await getAuthoriseStatus();
     if (!status) {
-        authoriseUser({"username": "79879536376", "telegram_id": 12345});
-        // const user = tg.initDataUnsafe.user;
-        // if (user) {
-        //     console.log(user)
-        // }
+        const user = tg.initDataUnsafe.user;
+        if (user) {
+            authoriseUser({"username": user.id, "telegram_id": user.id});
+        }
     }
 }
 
