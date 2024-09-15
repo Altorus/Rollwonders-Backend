@@ -32,10 +32,10 @@ function getSelectedIngredients() {
 
 function changeCreateButtonState() {
     const cards = document.querySelectorAll(".ingridient-card");
-    const hasCard = Array.from(cards).some(card => {
-        return card.querySelector('input[type=checkbox]:checked')
+    const hasEmptyCard = Array.from(cards).some(card => {
+        return !card.querySelector('input[type=checkbox]:checked')
     })
     const button = document.querySelector('.__createRecipe')
 
-    button.disabled = hasCard
+    button.disabled = hasEmptyCard
 }
