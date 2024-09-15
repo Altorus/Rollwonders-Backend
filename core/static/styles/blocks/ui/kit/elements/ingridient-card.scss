@@ -27,14 +27,11 @@
 
     &__text-block {
       flex: 1;
-      display: flex;
-      justify-content: space-between;
+      @include grid(2, 1.333rem);
       align-items: center;
-      gap: 1.333rem;
 
       &__name {
         @include button_1;
-        white-space: nowrap;
       }
 
       &__state {

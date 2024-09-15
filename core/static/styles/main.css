@@ -478,17 +478,16 @@ input {
 }
 .ingridient-card__header__text-block {
   flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.333rem;
+  align-items: center;
 }
 .ingridient-card__header__text-block__name {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.03em;
-  white-space: nowrap;
 }
 .ingridient-card__header__text-block__state {
   font-size: 1.25rem;
