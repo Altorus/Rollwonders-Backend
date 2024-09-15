@@ -7,7 +7,9 @@ export function recipeProcessor() {
         ingredients.forEach(ingredient => {
             const checkboxes = ingredient.querySelectorAll("input[type=checkbox]");
             checkboxes.forEach(checkbox => {
-                checkbox.addEventListener("change", () => {
+                checkbox.addEventListener("change", (element) => {
+                    const card = element.target.closest('.ingridient-card');
+                    changeIngredientState(card);
                     changeCreateButtonState();
                 });
             });
@@ -28,6 +30,16 @@ function getSelectedIngredients() {
     if (!checkboxes.length) return [];
 
     return Array.from(checkboxes).map(checkbox => checkbox.value);
+}
+
+function changeIngredientState(card) {
+    const stateElement = card.querySelector(`.__ingridientState`);
+    const checkboxes = card.querySelectorAll('input[type=checkbox]:checked').length;
+    if (checkboxes > 0) {
+        stateElement.innerText = "Выбрано";
+    } else {
+        stateElement.innerText = "Не выбрано";
+    }
 }
 
 function changeCreateButtonState() {
