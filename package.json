@@ -1,0 +1,29 @@
+{
+  "name": "building-material-backend",
+  "version": "1.0.0",
+  "description": "## Deploy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch ./core/static/styles/main.scss ./core/static/styles/main.css",
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "imask": "^7.6.1",
+    "swiper": "^11.1.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-serve": "^1.1.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-pluginutils": "^2.8.2",
+    "sass": "^1.77.6"
+  }
+}

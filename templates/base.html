@@ -118,6 +118,6 @@
 {# Apply extra body html from site settings #}
 {% autoescape off %}{{ site_settings.extra_body_html }}{% endautoescape %}
 {% csrf_token %}
-<script type="module" src="{% static 'scripts/app.js' %}"></script>
+<script type="module" src="{% static 'scripts/compiled/main.min.js' %}"></script>
 </body>
 </html>
