@@ -118,7 +118,6 @@
 {# Apply extra body html from site settings #}
 {% autoescape off %}{{ site_settings.extra_body_html }}{% endautoescape %}
 {% csrf_token %}
-<script src="https://unpkg.com/imask"></script>
 <script type="module" src="{% static 'scripts/app.js' %}"></script>
 </body>
 </html>
