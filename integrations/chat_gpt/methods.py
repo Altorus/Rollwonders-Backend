@@ -105,4 +105,4 @@ class GPTGenerator:
         try:
             self.__parse_result(clean_result, recipe)
         except ValueError as e:
-            logger.error(e)
+            logger.error(e, clean_result)
