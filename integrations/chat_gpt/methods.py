@@ -102,7 +102,8 @@ class GPTGenerator:
 
         result = stream.choices[0].message.content
         clean_result = re.sub(r'\s+', ' ', result).strip()
+        logger.error(clean_result)
         try:
             self.__parse_result(clean_result, recipe)
         except ValueError as e:
-            logger.error(e, clean_result)
+            logger.error(e)

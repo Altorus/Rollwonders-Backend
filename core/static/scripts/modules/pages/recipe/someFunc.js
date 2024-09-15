@@ -37,5 +37,5 @@ function changeCreateButtonState() {
     })
     const button = document.querySelector('.__createRecipe')
 
-    button.disabled = hasCard
+    button.disabled = !hasCard
 }
