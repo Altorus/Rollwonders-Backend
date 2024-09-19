@@ -215,6 +215,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "filename": os.path.join(BASE_LOGS_DIR, "debug.log"),
+            "formatter": "verbose",
         },
         "gpt": {
             "level": "DEBUG",
@@ -233,5 +234,11 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} ({levelname})- {name}- {message}",
+            "style": "{",
+        }
     },
 }

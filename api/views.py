@@ -16,6 +16,10 @@ from core.models import Recipe
 from .serializers import MakeRecipeSerializer, UserSerializer
 from integrations.chat_gpt.tasks import generate_recipe_task
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class GenerateRecipeApiView(CreateAPIView, RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
