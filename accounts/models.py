@@ -5,7 +5,7 @@ from django.db import models
 
 
 class User(auth_models.AbstractUser):
-    telegram_id = models.IntegerField(unique=True, blank=True, null=True, verbose_name="id пользователя в Tg")
+    telegram_id = models.BigIntegerField(unique=True, blank=True, null=True, verbose_name="id пользователя в Tg")
     phone = models.CharField(verbose_name="Телефон", max_length=20, blank=True, null=True)
 
     @staticmethod
