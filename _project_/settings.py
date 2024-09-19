@@ -237,7 +237,7 @@ LOGGING = {
     },
     "formatters": {
         "verbose": {
-            "format": "{asctime} ({levelname})- {name}- {message}",
+            "format": "{asctime} ({levelname})- {name}- {message} Request body: {request_body}",
             "style": "{",
         }
     },
