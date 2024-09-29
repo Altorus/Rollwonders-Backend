@@ -10,7 +10,7 @@
     color: var(--text-primary);
   }
 
-  input[type="checkbox"] {
+  input[type="radio"] {
     display: none;
   }
 
@@ -36,7 +36,7 @@
     }
   }
 
-  input[type="checkbox"]:checked + .checkmark {
+  input[type="radio"]:checked + .checkmark {
     background-color: var(--bg-inverse);
 
     &:after {

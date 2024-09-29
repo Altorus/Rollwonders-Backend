@@ -33,7 +33,7 @@
                                 {% for ingredient in category.ingredients.all %}
                                     <label for="checkbox{{ ingredient.id }}" class="checkbox">
                                         <span class="checkbox__label">{{ ingredient.name }}</span>
-                                        <input type="checkbox" name="" value="{{ ingredient.id }}" id="checkbox{{ ingredient.id }}">
+                                        <input type="radio" name="ingredient" value="{{ ingredient.id }}" id="checkbox{{ ingredient.id }}">
                                         <span class="checkmark"></span>
                                     </label>
                                 {% endfor %}

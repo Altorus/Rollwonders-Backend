@@ -5,7 +5,7 @@ export function recipeProcessor() {
     const button = document.querySelector('.__createRecipe')
     if (ingredients.length && button) {
         ingredients.forEach(ingredient => {
-            const checkboxes = ingredient.querySelectorAll("input[type=checkbox]");
+            const checkboxes = ingredient.querySelectorAll("input[type=radio]");
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener("change", (element) => {
                     const card = element.target.closest('.ingridient-card');
@@ -26,7 +26,7 @@ export function recipeProcessor() {
 }
 
 function getSelectedIngredients() {
-    const checkboxes = document.querySelectorAll(".ingridient-card input[type=checkbox]:checked");
+    const checkboxes = document.querySelectorAll(".ingridient-card input[type=radio]:checked");
     if (!checkboxes.length) return [];
 
     return Array.from(checkboxes).map(checkbox => checkbox.value);
@@ -34,7 +34,7 @@ function getSelectedIngredients() {
 
 function changeIngredientState(card) {
     const stateElement = card.querySelector(`.__ingridientState`);
-    const checkboxes = card.querySelectorAll('input[type=checkbox]:checked');
+    const checkboxes = card.querySelectorAll('input[type=radio]:checked');
     if (checkboxes.length > 0) {
         const values = Array.from(checkboxes).map(checkbox=>{
             return checkbox.previousElementSibling.innerText;
@@ -48,7 +48,7 @@ function changeIngredientState(card) {
 function changeCreateButtonState() {
     const cards = document.querySelectorAll(".ingridient-card");
     const hasCard = Array.from(cards).some(card => {
-        return card.querySelector('input[type=checkbox]:checked')
+        return card.querySelector('input[type=radio]:checked')
     })
     const button = document.querySelector('.__createRecipe')
 
